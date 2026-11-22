@@ -21,6 +21,12 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Temporary Vercel Smoke Test
+
+The Vercel image temporarily uses Laravel's `array` session driver and cache store so the application can start without an external database. These are in-memory stores; session and cache data will not persist between requests or application instances. This setup is only for checking that the app runs and is not suitable for normal LMS use.
+
+Full LMS functionality requires a configured external database. Assignment uploads also require persistent private object storage; files written only to a deployment container are not durable.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
