@@ -65,7 +65,7 @@ class StudentAssignmentsController extends Controller
             ->first();
 
         $file = $validated['submission'];
-        $path = $file->store('assignment-submissions', 'local');
+        $path = $file->store('assignment-submissions');
 
         AssignmentSubmission::updateOrCreate(
             [
@@ -81,7 +81,7 @@ class StudentAssignmentsController extends Controller
         );
 
         if ($existing?->file_path && $existing->file_path !== $path) {
-            Storage::disk('local')->delete($existing->file_path);
+            Storage::disk()->delete($existing->file_path);
         }
 
         return redirect()
@@ -95,11 +95,11 @@ class StudentAssignmentsController extends Controller
             abort(404);
         }
 
-        if (! $submission->file_path || ! Storage::disk('local')->exists($submission->file_path)) {
+        if (! $submission->file_path || ! Storage::disk()->exists($submission->file_path)) {
             abort(404);
         }
 
-        return Storage::disk('local')->download(
+        return Storage::disk()->download(
             $submission->file_path,
             $submission->original_name ?: 'submission',
         );

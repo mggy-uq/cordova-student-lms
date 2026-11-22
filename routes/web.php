@@ -10,6 +10,10 @@ use App\Http\Controllers\StudentGradesController;
 use App\Http\Controllers\StudentSettingsController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
+
 Route::redirect('/', '/login');
 
 Route::middleware('guest')->group(function () {

@@ -16,6 +16,13 @@ class StudentAuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_deployment_health_endpoint_is_available(): void
+    {
+        $this->get('/health')
+            ->assertOk()
+            ->assertExactJson(['status' => 'ok']);
+    }
+
     public function test_guest_can_view_login_and_registration_forms(): void
     {
         $this->get(route('login'))
